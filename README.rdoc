@@ -1,6 +1,18 @@
 = local_config
 
-Description goes here.
+local_config is a micro plugin that encapsulates the pattern of loading either the official foo.yml 
+config file or the developer's personal foo.local.yml file.
+
+== Example
+
+    LocalConfig.load_config('database')
+
+This loads RAILS_ROOT/config/database.local.yml if present. Otherwise loads database.yml.
+Will return only the section related to the current RAILS_ENV by default.
+
+If you have a file that isn't split in the usual RAILS_ENV sections, simply call
+
+    LocalConfig.load_environment_config('foo', :environment => false)
 
 == Copyright
 
