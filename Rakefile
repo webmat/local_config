@@ -5,7 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "local_config"
-    gem.summary = %Q{TODO}
+    gem.summary = %Q{Micro plugin to solve a micro problem: loading 
+      either your .local.yml config file if it's there, or the official .yml otherwise.}
     gem.email = "webmat@gmail.com"
     gem.homepage = "http://github.com/webmat/local_config"
     gem.authors = ["Mathieu Martin"]
