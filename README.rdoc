@@ -14,6 +14,16 @@ If you have a file that isn't split in the usual RAILS_ENV sections, simply call
 
     LocalConfig.load_environment_config('foo', :environment => false)
 
+== Install
+
+Whichever you prefer:
+
+    script/plugin install http://github.com/webmat/local_config.git
+
+or 
+
+    config.gem "webmat-local_config", :lib => 'local_config', :source => "http://gems.github.com"
+
 == Copyright
 
 Copyright (c) 2009 Mathieu Martin. See LICENSE for details.
