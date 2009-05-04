@@ -1,0 +1,7 @@
+= local_config
+
+Description goes here.
+
+== Copyright
+
+Copyright (c) 2009 Mathieu Martin. See LICENSE for details.
