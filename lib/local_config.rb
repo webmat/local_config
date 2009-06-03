@@ -8,7 +8,12 @@ module LocalConfig
     shared_config_file    = "#{RAILS_ROOT}/config/#{name}.yml"
     config_file = File.exists?(personal_config_file) ? personal_config_file : shared_config_file
 
-    config = HashWithIndifferentAccess.new YAML.load(File.read(config_file))
-    environment ? config[RAILS_ENV] : config
+    yaml = YAML.load(File.read(config_file))
+    if yaml.is_a? Hash
+      config = HashWithIndifferentAccess.new yaml
+      environment ? config[RAILS_ENV] : config
+    else
+      yaml
+    end
   end
 end

@@ -41,13 +41,23 @@ class LocalConfigTest < Test::Unit::TestCase
     end
   end
 
+  context "reading no_env_ho_hash.yml which contains an array rather than a hash" do
+    setup do
+      @config = LocalConfig.load_config('no_env_no_hash', :environment => false)
+    end
+
+    should "load the array as is" do
+      assert_equal ['string 1 of the array', 'another string'], @config, @config.inspect
+    end
+  end
+
   context "reading no_env.yml" do
     setup do
       @config = LocalConfig.load_config('no_env', :environment => false)
     end
 
     should "return the values of the .yml file" do
-      assert_equal 'value', @config[:param]
+      assert_equal 'value', @config[:param], @config.inspect
     end
   end
 end
