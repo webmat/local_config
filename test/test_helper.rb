@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'test/unit'
 require 'shoulda'
+gem 'mocha', '= 0.9.5'
+require 'mocha'
 require 'activesupport'
 
 test_dir = File.dirname(__FILE__)

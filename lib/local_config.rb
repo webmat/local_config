@@ -11,9 +11,21 @@ module LocalConfig
     yaml = YAML.load(File.read(config_file))
     if yaml.is_a? Hash
       config = HashWithIndifferentAccess.new yaml
-      environment ? config[RAILS_ENV] : config
+      if environment
+        log "WARNING: LocalConfig loaded an empty configuration for #{name}. Maybe you want to use :environment => false?" if config[RAILS_ENV].nil?
+        config[RAILS_ENV]
+      else
+        config
+      end
     else
       yaml
+    end
+  end
+
+  def self.log(message)
+    warn message
+    if defined?(Rails)
+      Rails.logger.warn message
     end
   end
 end

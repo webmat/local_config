@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/test_helper'
 
 class LocalConfigTest < Test::Unit::TestCase
   context "with RAILS_ENV set to 'development'" do
@@ -39,9 +39,25 @@ class LocalConfigTest < Test::Unit::TestCase
         assert_equal 'never overridden', @config[:param]
       end
     end
+
+    context "reading no_env_with_hash.yml which contains a hash with no env" do
+      context "forgetting to specify :environment => false" do
+        setup do
+          @config = LocalConfig.load_config('no_env_with_hash')
+        end
+
+        should "return nil" do
+          assert_nil @config
+        end
+
+        before_should "give a console warning" do
+          LocalConfig.expects(:warn).with{ |param| param =~ /empty.*no_env_with_hash/ }
+        end
+      end
+    end
   end
 
-  context "reading no_env_ho_hash.yml which contains an array rather than a hash" do
+  context "reading no_env_no_hash.yml which contains an array rather than a hash" do
     setup do
       @config = LocalConfig.load_config('no_env_no_hash', :environment => false)
     end
